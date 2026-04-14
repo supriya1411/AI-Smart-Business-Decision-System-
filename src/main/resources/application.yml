@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: ai-smart-business-decision-system
+  datasource:
+    url: jdbc:sqlite:data/ai_business.db
+    driver-class-name: org.sqlite.JDBC
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  sql:
+    init:
+      mode: never
+
+server:
+  port: 8080
+
+# ─────────────────────────────────────────
+# OpenAI Configuration
+# ─────────────────────────────────────────
+openai:
+  api-key: ${OPENAI_API_KEY:YOUR_OPENAI_API_KEY_HERE}
+  model: gpt-4o-mini          # cost-effective model; change to gpt-4o for higher quality
+  max-tokens: 256
+
+# ─────────────────────────────────────────
+# Python AI Microservice (fallback stub)
+# ─────────────────────────────────────────
+ai:
+  service:
+    base-url: http://localhost:8000
+    timeout:
+      connect-ms: 5000
+      read-ms: 10000
